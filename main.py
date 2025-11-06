@@ -3,6 +3,10 @@ from ocr_service import procesar_documento
 
 app = FastAPI()
 
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+
 @app.post("/ocr/extract")
 async def extract(file: UploadFile = File(...)):
     file_bytes = await file.read()
